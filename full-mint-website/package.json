@@ -1,0 +1,10 @@
+{
+  "name": "hardhat-project",
+  "dependencies": {
+    "@chakra-ui/react": "^2.2.1",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@openzeppelin/contracts": "^4.6.0",
+    "framer-motion": "^6.3.11"
+  }
+}
