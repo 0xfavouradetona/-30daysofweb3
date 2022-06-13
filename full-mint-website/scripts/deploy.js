@@ -2,7 +2,7 @@ const hre = require("hardhat");
 
 async function main() {
   const FaveTestNFT = await hre.ethers.getContractFactory("FaveTestNFT");
-  const favetestnft = await FaveTestNFT.deploy("Hello, Hardhat!");
+  const favetestnft = await FaveTestNFT.deploy();
 
   await favetestnft.deployed();
 
