@@ -1,4 +1,5 @@
 require("@nomiclabs/hardhat-waffle");
+require("@nomiclabs/hardhat-etherscan");
 const dotenv = require("dotenv");
 
 dotenv.config();
@@ -28,6 +29,6 @@ module.exports = {
     },
   },
   etherscan: {
-    apikey: process.env.REACT_APP_ETHERSCAN_KEY,
+    apiKey: process.env.REACT_APP_ETHERSCAN_KEY,
   }
 };
