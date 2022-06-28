@@ -4,17 +4,17 @@
 pragma solidity ^0.8.0;
 
 // Switch this to your own contract address once deployed, for bookkeeping!
-// Example Contract Address on Goerli: 
+// Example Contract Address on Goerli: 0xEA579F39B6CB448B72b8E4b11bcbd8710df4c4D9
 
-contract BuyMeCoffee {
-    // Event to emit when a memo is created
+contract BuyMeACoffee {
+    // Event to emit when a Memo is created.
     event NewMemo(
         address indexed from,
         uint256 timestamp,
         string name,
         string message
     );
-
+    
     // Memo struct.
     struct Memo {
         address from;
@@ -22,7 +22,7 @@ contract BuyMeCoffee {
         string name;
         string message;
     }
-
+    
     // Address of contract deployer. Marked payable so that
     // we can withdraw to this address later.
     address payable owner;
@@ -37,10 +37,17 @@ contract BuyMeCoffee {
     }
 
     /**
-        * @dev buy a coffee for owner (sends an ETH tip an leaves a memo) 
-        * @param _name name of the coffee purchaser
-        * @param _message a nice message from the purchaser
-    */
+     * @dev fetches all stored memos
+     */
+    function getMemos() public view returns (Memo[] memory) {
+        return memos;
+    }
+
+    /**
+     * @dev buy a coffee for owner (sends an ETH tip and leaves a memo)
+     * @param _name name of the coffee purchaser
+     * @param _message a nice message from the purchaser
+     */
     function buyCoffee(string memory _name, string memory _message) public payable {
         // Must accept more than 0 ETH for a coffee.
         require(msg.value > 0, "can't buy coffee for free!");
@@ -63,9 +70,9 @@ contract BuyMeCoffee {
     }
 
     /**
-        * @dev send the entire balance stored in this contract to the owner 
-    */
-    function withrawTips() public {
+     * @dev send the entire balance stored in this contract to the owner
+     */
+    function withdrawTips() public {
         require(owner.send(address(this).balance));
     }
 }
